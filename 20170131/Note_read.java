@@ -78,14 +78,31 @@ class NoteMan implements ActionListener{
 
   public void actionPerformed(ActionEvent ae) {
     String cmd = ae.getActionCommand();
+    // 繰り返し処理でこのしたの文を囲んで、全文表示するようにする
         if(cmd.equals("open")){
-        area.setText(datas[num]);
-        area.append("\n");
-        area.append(datas[num]);
+      area.setText(datas[num]);
+      area.append("\n");
+      area.append(datas[1]);
+      area.append("\n");
+      area.append(datas[2]);
+      area.append("\n");
+      area.append(datas[3]);
+      area.append("\n");
+      area.append(datas[4]);
+      area.append("\n");
+      area.append(datas[5]);
+      area.append("\n");
+      area.append(datas[6]);
+      area.append("\n");
+      area.append(datas[7]);
+      area.append("\n");
+      area.append(datas[8]);
+      area.append("\n");
+      area.append(datas[9]);
+      area.append("\n");
+      area.append(datas[10]);
     }else if(cmd.equals("save")){
       textdata = area.getText();
-
-
      try{
         File outFile      = new File("change.txt");
         FileWriter fw     = new FileWriter(outFile,true);
