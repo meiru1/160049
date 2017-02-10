@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>test: createjs</title>
+</head>
+<body>
+<h1>test: createjs</h1>
+<hr>
+
+<canvas id="myCanvas" width="900" height="600"></canvas>
+
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script>
+	window.addEventListener('load', init);
+	function init() {
+		var stage = new createjs.Stage('myCanvas');
+
+		stage.enableMouseOver();
+
+		var shape = new createjs.Shape();
+		shape.graphics.beginFill("Purple");
+		shape.graphics.drawCircle(100, 100, 80);
+
+	stage.addChild(shape);
+
+	shape.addEventListener("mouseover", handleMouseOver);
+	shape.addEventListener("mouseout", handleMouseOut);
+
+	function handleMouseOver(event) {
+		shape.graphics
+			.clear()
+			.beginFill("Yellow")
+			.drawCircle(100, 100, 80);
+	}
+
+	function handleMouseOut(event) {
+		shape.graphics
+			.clear()
+			.beginFill("Purple")
+			.drawCircle(100, 100, 80);
+	}
+
+	createjs.Ticker.addEventListener("tick", handleTick);
+
+	function handleTick(event) {
+		stage.update();
+	}
+}
+</script>
+</body>
+</html>

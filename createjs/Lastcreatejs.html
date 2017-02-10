@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/base.css">
+  <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+  <script>
+    window.addEventListener("load", init);
+    function init() {
+      var stage = new createjs.Stage("myCanvas");
+      var poly = new createjs.Shape();
+      poly.graphics.beginFill("DarkRed");
+      poly.graphics.drawPolyStar(0, 0, 75, 5, 0.6, -90);
+      stage.addChild(poly);
+      poly.x = 200;
+      poly.y = 100;
+      var dot = new createjs.Shape();
+      dot.graphics.beginFill("blue").drawCircle(0, 0, 5);
+      stage.addChild(dot);
+      createjs.Ticker.addEventListener("tick", handleTick);
+      function handleTick() {
+        dot.x = stage.mouseX;
+        dot.y = stage.mouseY;
+        var point = poly.globalToLocal(stage.mouseX, stage.mouseY);
+        var isHit = poly.hitTest(point.x, point.y);
+        if (isHit == true) {
+          poly.graphics.clear()
+                  .beginFill("DarkRed")
+                  .drawPolyStar(0, 0, 75, 5, 0.6, -90);
+          alert("clear!");
+        } else {
+          poly.graphics.clear()
+                  .beginFill("green")
+                  .drawPolyStar(0, 0, 75, 5, 0.6, -90);
+        }
+        stage.update();
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="myCanvas" width="640" height="200"></canvas>
+</body>
+</html>

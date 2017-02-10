@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>createjs2</title>
+</head>
+<body>
+<h1>createjs2の練習</h1>
+<hr>
+<canvas id="myCanvas" width="900" height="600"></canvas>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script>
+	window.addEventListener('load', init);
+	function init() {
+	var stage = new createjs.Stage("myCanvas");
+
+	var shape = new createjs.Shape();
+	shape.graphics.beginFill("#ff0000");
+	shape.graphics.drawRect(100, 100, 100, 100);
+
+	stage.addChild(shape);
+
+	var muki = 1;
+
+	createjs.Ticker.on('tick', function(){
+		shape.x += 10 * muki;
+		if(shape.x > 900) muki = -1;
+		if(shape.x < 0) muki = +1;
+				stage.update();
+
+	})
+}
+</script>
+	
+</body>
+</html>
