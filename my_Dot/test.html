@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<title>ドット絵エディタ</title>
+<script>
+$(function() {
+  var pals = ['000', '088', '00d', '438', '800', '888', '8cf', 'aa2', 'b82', 'c18', 'fbb', 'e00', 'fd0', 'feb', 'ddd', 'fff'];
+  var pushed = false;
+  var color = '';
+
+  var row = '<tr>';
+  for (i = 0; i < 16; i++) row += '<td>&nbsp;</td>';
+  row += '</tr>';
+
+
+  $('#palette').html(row);
+  for (i = 0; i < 16; i++) $('#palette td').eq(i).css({backgroundColor: '#' + pals[i]});
+
+
+  $('#palette td').click(function() {
+    $(this).css({borderColor: 'yellow'}).siblings().css({borderColor: 'gray'});
+    color = $(this).css('background-color');
+  }).eq(0).click();
+});
+</script>
+<style>
+table {
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+td {
+  border: 1px solid gray;
+  width: 16px;
+  line-height: 16px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<table id="canvas"></table>
+<table id="palette"></table>
+</body>
+</html>
